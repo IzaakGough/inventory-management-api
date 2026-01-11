@@ -37,3 +37,20 @@ clean architecture and API design principles.
 ```bash
 dotnet ef database update
 dotnet run --project Inventory.Api
+```
+
+## API Endpoints (Planned)
+
+- GET /api/items
+- GET /api/items/{id}
+- POST /api/items
+- PUT /api/items/{id}
+- DELETE /api/items/{id}
+
+## Roadmap
+
+- Add integration tests for core endpoints
+- Add authentication using JWT
+- Add role-based authorization
+- Migrate from SQLite to PostgreSQL
+- Add background processing for async jobs
