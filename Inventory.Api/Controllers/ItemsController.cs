@@ -46,6 +46,22 @@ namespace Inventory.Api.Controllers;
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, UpdateItemRequest request, CancellationToken ct)
+    {
+        var item = await _repo.GetByIdAsync(id, ct);
+        if (item is null) return NotFound();
+
+        item.Name = request.Name;
+        item.Quantity = request.Quantity;
+        item.Location = request.Location;
+
+        await _repo.UpdateAsync(item, ct);
+        return NoContent();
+    }
+
+
+
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
     {
