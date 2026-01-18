@@ -18,6 +18,10 @@ builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 var app = builder.Build();
 
+if (!app.Environment.IsEnvironment("Test"))
+{
+    app.UseHttpsRedirection();
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -25,7 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
 
